@@ -1,0 +1,32 @@
+{
+  "name": "@rebrickableapi/fetch",
+  "version": "0.0.1",
+  "description": "Tiny wrapper around fetch that returns type-safe responses",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brickninja-org/rebrickableapi-ts.git",
+    "directory": "packages/fetch"
+  },
+  "keywords": [
+    "rebrickableapi",
+    "fetch",
+    "rebrickable",
+    "api"
+  ],
+  "scripts": {
+    "test": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "@rebrickableapi/types": "~0.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

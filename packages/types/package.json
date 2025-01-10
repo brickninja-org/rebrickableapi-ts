@@ -1,0 +1,36 @@
+{
+  "name": "@rebrickableapi/types",
+  "version": "0.0.1",
+  "description": "TypeScript types for all datastructures used by the Rebrickable API",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brickninja-org/rebrickableapi-ts.git",
+    "directory": "packages/types"
+  },
+  "exports": {
+    "./endpoints": {
+      "types": "./endpoints.ts"
+    },
+    "./data/*": {
+      "types": "./data/*.ts"
+    }
+  },
+  "keywords": [
+    "rebrickableapi",
+    "types",
+    "rebrickable",
+    "api",
+    "typescript"
+  ],
+  "scripts": {
+    "test": "tsc",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
