@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
-  "changelog": "@changesets-bot/changelog",
+  "changelog": "@changeset-bot/changelog",
   "commit": false,
   "fixed": [],
   "linked": [],
