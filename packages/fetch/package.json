@@ -1,6 +1,6 @@
 {
   "name": "@rebrickableapi/fetch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Tiny wrapper around fetch that returns type-safe responses",
   "license": "MIT",
   "main": "dist/index.js",
