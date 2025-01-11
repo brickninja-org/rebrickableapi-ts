@@ -12,7 +12,7 @@ export async function fetchRebrickableAPI<
 >(
   ...[endpoint, options]: Args<Url>
 ): Promise<EndpointType<Url>> {
-  const url = new URL(endpoint, 'https://rebrickable.com/');
+  const url = new URL(`${endpoint}/`, 'https://rebrickable.com/');
 
   if (hasUserToken(options)) {
     url.searchParams.set('key', options.userToken);
