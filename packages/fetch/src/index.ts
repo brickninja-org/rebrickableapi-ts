@@ -12,10 +12,10 @@ export async function fetchRebrickableAPI<
 >(
   ...[endpoint, options]: Args<Url>
 ): Promise<EndpointType<Url>> {
-  const url = new URL(`${endpoint}/`, 'https://rebrickable.com/');
+  const url = new URL(endpoint, 'https://rebrickable.com/');
 
-  if (hasUserToken(options)) {
-    url.searchParams.set('key', options.userToken);
+  if (hasAccessToken(options)) {
+    url.searchParams.set('user_token', options.key);
   }
 
   let request = new Request(url, {
@@ -42,8 +42,8 @@ export async function fetchRebrickableAPI<
   const isJSON = response.headers.get('content-type').includes('application/json');
 
   // censor the user token in URL to not leak it in error messages
-  const erroredURL = hasUserToken(options)
-    ? url.toString().replace(options.userToken, '***')
+  const erroredURL = hasAccessToken(options)
+    ? url.toString().replace(options.key, '***')
     : url.toString();
 
   // check if the response is an error
@@ -100,6 +100,6 @@ export class RebrickableAPIError extends Error {
   }
 }
 
-function hasUserToken(options: OptionsByEndpoint<any>): options is AuthenticatedOptions {
-  return 'userToken' in options;
+function hasAccessToken(options: OptionsByEndpoint<any>): options is AuthenticatedOptions {
+  return 'key' in options;
 }
