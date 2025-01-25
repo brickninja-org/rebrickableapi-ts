@@ -8,19 +8,27 @@ import type { Theme } from './data/theme';
 type BasePath = '/api/v3';
 
 export type KnownAuthenticatedEndpoint =
-  | `${BasePath}/users/_token/`
-  | `${BasePath}/users/build/${string}/`
-  | `${BasePath}/users/${string}/profile/`;
-
-export type KnownUnauthorizedEnpoint =
-  | `${BasePath}/lego/colors/`
+  | `${BasePath}/colors/`
   | `${BasePath}/lego/elements/${string}`
   | `${BasePath}/lego/minifigs/`
   | `${BasePath}/lego/part_categories/`
   | `${BasePath}/lego/parts/`
   | `${BasePath}/lego/parts/${string}/colors/`
+  | `${BasePath}/lego/parts/${string}/colors/${number}/sets/`
+  | `${BasePath}/lego/sets/`
+  | `${BasePath}/lego/sets/${string}/alternates/`
+  | `${BasePath}/lego/sets/${string}/minifigs/`
+  | `${BasePath}/lego/sets/${string}/parts/`
+  | `${BasePath}/lego/sets/${string}/sets/`
   | `${BasePath}/lego/themes/`
-  | `${BasePath}/lego/themes/${number}/`;
+  | `${BasePath}/lego/themes/${number}/`
+  | `${BasePath}/users/_token/`
+  | `${BasePath}/users/${string}/allparts/`
+  | `${BasePath}/users/${string}/build/${string}/`
+  | `${BasePath}/users/${string}/lost_parts/`
+  | `${BasePath}/users/${string}/profile/`;
+
+export type KnownUnauthorizedEnpoint = never;
 
 export type KnownBulkExpandedEndpoint =
   | `${BasePath}/lego/colors/`
