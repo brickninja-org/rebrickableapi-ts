@@ -3,26 +3,32 @@ import type { Element } from './data/element';
 import type { Minifig } from './data/minifig';
 import type { Part } from './data/part';
 import type { PartCategory } from './data/part-categories';
+import type { Theme } from './data/theme';
 
 type BasePath = '/api/v3';
 
 export type KnownAuthenticatedEndpoint =
-  | `${BasePath}/lego/${string}/profile`;
+  | `${BasePath}/users/_token/`
+  | `${BasePath}/users/build/${string}/`
+  | `${BasePath}/users/${string}/profile/`;
 
 export type KnownUnauthorizedEnpoint =
   | `${BasePath}/lego/colors/`
   | `${BasePath}/lego/elements/${string}`
-  | `${BasePath}/lego/minifigs`
-  | `${BasePath}/lego/parts_categories`
-  | `${BasePath}/lego/parts`
-  | `${BasePath}/lego/parts/${string}/colors`;
+  | `${BasePath}/lego/minifigs/`
+  | `${BasePath}/lego/part_categories/`
+  | `${BasePath}/lego/parts/`
+  | `${BasePath}/lego/parts/${string}/colors/`
+  | `${BasePath}/lego/themes/`
+  | `${BasePath}/lego/themes/${number}/`;
 
 export type KnownBulkExpandedEndpoint =
   | `${BasePath}/lego/colors/`
-  | `${BasePath}/lego/minifigs`
-  | `${BasePath}/lego/parts_categories`
-  | `${BasePath}/lego/parts`
-  | `${BasePath}/lego/parts/${string}/colors`;
+  | `${BasePath}/lego/minifigs/`
+  | `${BasePath}/lego/part_categories/`
+  | `${BasePath}/lego/parts/`
+  | `${BasePath}/lego/parts/${string}/colors/`
+  | `${BasePath}/lego/themes/`;
 
 export type KnownEndpoint = KnownAuthenticatedEndpoint | KnownUnauthorizedEnpoint | KnownBulkExpandedEndpoint;
 
@@ -74,6 +80,7 @@ export type AuthenticatedOptions = {
 
 export type OptionsByEndpoint<Endpoint extends string> =
   Endpoint extends BulkExpandedEndpointUrl<KnownBulkExpandedEndpoint & KnownUnauthorizedEnpoint, string | number> ? Options :
+  Endpoint extends BulkExpandedEndpointUrl<KnownBulkExpandedEndpoint & KnownAuthenticatedEndpoint, string | number> ? Options & AuthenticatedOptions :
   Endpoint extends KnownAuthenticatedEndpoint ? Options & AuthenticatedOptions :
   Endpoint extends KnownEndpoint | BulkExpandedEndpointUrl<KnownBulkExpandedEndpoint, string | number> ? Options :
   Partial<AuthenticatedOptions>;
@@ -81,10 +88,11 @@ export type OptionsByEndpoint<Endpoint extends string> =
 export type EndpointType<Url extends KnownEndpoint | (string & {})> =
   Url extends `/api/v3/lego/elements/${string}` ? Element :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/colors/', string> ? BulkExpandedResponseType<'/api/v3/lego/colors/', Url, string, Color> :
-  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/minifigs', string> ? BulkExpandedResponseType<'/api/v3/lego/minifigs', Url, string, Minifig> :
-  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/parts_categories', number> ? BulkExpandedResponseType<'/api/v3/lego/parts_categories', Url, number, PartCategory> :
-  Url extends `/api/v3/lego/parts/${string}/colors` ? PaginatedResponseType<Url, Color> :
-  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/parts', string> ? BulkExpandedResponseType<'/api/v3/lego/parts', Url, string, Part> :
+  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/minifigs/', string> ? BulkExpandedResponseType<'/api/v3/lego/minifigs/', Url, string, Minifig> :
+  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/part_categories/', number> ? BulkExpandedResponseType<'/api/v3/lego/part_categories/', Url, number, PartCategory> :
+  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/themes/', number> ? BulkExpandedResponseType<'/api/v3/lego/themes/', Url, number, Theme> :
+  Url extends `/api/v3/lego/parts/${string}/colors/` ? PaginatedResponseType<Url, Color> :
+  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/parts/', string> ? BulkExpandedResponseType<'/api/v3/lego/parts/', Url, string, Part> :
   // fallback for all bulk expanded URLs
   Url extends BulkExpandedEndpointUrl<KnownBulkExpandedEndpoint, string | number> ? BulkExpandedResponseType<KnownBulkExpandedEndpoint, Url, string | number, unknown> :
   // fallback for other urls
