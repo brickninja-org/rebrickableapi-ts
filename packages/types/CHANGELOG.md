@@ -1,5 +1,11 @@
 # @rebrickableapi/types
 
+## 0.0.7
+
+### Patch Changes
+
+- Update Authorized endpoints ([`82c62dc`](https://github.com/brickninja-org/rebrickableapi-ts/commit/82c62dcad67cf20f3086495783c72a7b63140286) by [@brickninja-pro](https://github.com/brickninja-pro))
+
 ## 0.0.6
 
 ### Patch Changes
