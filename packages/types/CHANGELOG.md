@@ -1,5 +1,11 @@
 # @rebrickableapi/types
 
+## 0.0.6
+
+### Patch Changes
+
+- Add more endpoints ([`ce59f16`](https://github.com/brickninja-org/rebrickableapi-ts/commit/ce59f16b2b5b06e49db862419ddfd8e13c0478d4) by [@brickninja-pro](https://github.com/brickninja-pro))
+
 ## 0.0.5
 
 ### Patch Changes
