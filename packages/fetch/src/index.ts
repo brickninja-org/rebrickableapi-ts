@@ -2,7 +2,7 @@ import type { AuthenticatedOptions, EndpointType, KnownEndpoint, OptionsByEndpoi
 
 type RequiredKeys<T> = { [K in keyof T]-?: {} extends Pick<T, K> ? never : K }[keyof T];
 
-// if OptionsByEndPoint<Url> has no required keys, make the options parameter optional
+// if OptionsByEndpoint<Url> has no required keys, make the options parameter optional
 type Args<Url extends string> = RequiredKeys<OptionsByEndpoint<Url>> extends never
   ? [endpoint: Url, options?: FetchRebrickableOptions & OptionsByEndpoint<Url> & FetchOptions]
   : [endpoint: Url, options: FetchRebrickableOptions & OptionsByEndpoint<Url> & FetchOptions];
@@ -15,7 +15,7 @@ export async function fetchRebrickableAPI<
   const url = new URL(endpoint, 'https://rebrickable.com/');
 
   if (hasAccessToken(options)) {
-    url.searchParams.set('user_token', options.key);
+    url.searchParams.set('key', options.key);
   }
 
   let request = new Request(url, {
@@ -41,7 +41,7 @@ export async function fetchRebrickableAPI<
   // check if the response is json (`application/json; charset=utf-8`)
   const isJSON = response.headers.get('content-type').includes('application/json');
 
-  // censor the user token in URL to not leak it in error messages
+  // censor the access token in URL to not leak it in error messages
   const erroredURL = hasAccessToken(options)
     ? url.toString().replace(options.key, '***')
     : url.toString();
