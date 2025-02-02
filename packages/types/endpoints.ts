@@ -3,6 +3,7 @@ import type { Element } from './data/element';
 import type { Minifig } from './data/minifig';
 import type { Part } from './data/part';
 import type { PartCategory } from './data/part-categories';
+import type { Set } from './data/set';
 import type { Theme } from './data/theme';
 
 type BasePath = '/api/v3';
@@ -36,6 +37,7 @@ export type KnownBulkExpandedEndpoint =
   | `${BasePath}/lego/part_categories/`
   | `${BasePath}/lego/parts/`
   | `${BasePath}/lego/parts/${string}/colors/`
+  | `${BasePath}/lego/sets/`
   | `${BasePath}/lego/themes/`;
 
 export type KnownEndpoint = KnownAuthenticatedEndpoint | KnownUnauthorizedEnpoint | KnownBulkExpandedEndpoint;
@@ -98,6 +100,7 @@ export type EndpointType<Url extends KnownEndpoint | (string & {})> =
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/colors/', string> ? BulkExpandedResponseType<'/api/v3/lego/colors/', Url, string, Color> :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/minifigs/', string> ? BulkExpandedResponseType<'/api/v3/lego/minifigs/', Url, string, Minifig> :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/part_categories/', number> ? BulkExpandedResponseType<'/api/v3/lego/part_categories/', Url, number, PartCategory> :
+  Url extends BulkExpandedEndpointUrl<'/api/v3/lego/sets/', string> ? BulkExpandedResponseType<'/api/v3/lego/sets/', Url, string, Set> :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/themes/', number> ? BulkExpandedResponseType<'/api/v3/lego/themes/', Url, number, Theme> :
   Url extends `/api/v3/lego/parts/${string}/colors/` ? PaginatedResponseType<Url, Color> :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/parts/', string> ? BulkExpandedResponseType<'/api/v3/lego/parts/', Url, string, Part> :
