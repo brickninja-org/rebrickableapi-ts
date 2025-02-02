@@ -1,5 +1,11 @@
 # @rebrickableapi/fetch
 
+## 0.0.9
+
+### Patch Changes
+
+- Update peer deps ([`e21f23e`](https://github.com/brickninja-org/rebrickableapi-ts/commit/e21f23e16936b0ada6eaefe75d74ae0cfde92011) by [@brickninja-pro](https://github.com/brickninja-pro))
+
 ## 0.0.8
 
 ### Patch Changes
