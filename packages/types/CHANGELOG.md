@@ -1,5 +1,11 @@
 # @rebrickableapi/types
 
+## 0.0.9
+
+### Patch Changes
+
+- Add ordering parameter to bulk endpoints ([`2f5e35e`](https://github.com/brickninja-org/rebrickableapi-ts/commit/2f5e35ed107ac0ae21c8c99619eff2d14a390aa0) by [@brickninja-pro](https://github.com/brickninja-pro))
+
 ## 0.0.8
 
 ### Patch Changes
