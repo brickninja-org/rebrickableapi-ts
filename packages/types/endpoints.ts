@@ -49,16 +49,12 @@ type WithParameters<Url extends string, Parameters extends string | undefined = 
   Parameters extends undefined ? Url : `${Url}?${Parameters}`;
 
 // helper for paginated parameters
-type PaginatedParameters = `page_num=${number}` | `page_size=${number}` | CombineParameters<`page_num=${number}`, `page_size=${number}`>;
+type PaginatedParameters = `page=${number}` | `page_size=${number}` | CombineParameters<`page=${number}`, `page_size=${number}`>;
 type PaginatedEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, PaginatedParameters>;
 
 // herlper for search parameters
 type SearchParameters = `search=${string}`;
 type SearchEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, SearchParameters>;
-
-// helper for ordering parameters
-type OrderingParameters = `ordering=${string}`;
-type OrderingEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, OrderingParameters>;
 
 type PaginatedResponseType<Endpoint extends KnownEndpoint, T> =
   Endpoint extends PaginatedEndpointUrl<KnownEndpoint> ? { count: number, next: string | null, previous: string | null, results: T[] } :
@@ -66,7 +62,10 @@ type PaginatedResponseType<Endpoint extends KnownEndpoint, T> =
 
 // helper types for bulk requests
 type BulkExpandedSingleEndpointUrl<Endpoint extends KnownBulkExpandedEndpoint, Id extends string | number> = `${Endpoint}${Id}/`;
-type BulkExpandedManyEndpointUrl<Endpoint extends KnownBulkExpandedEndpoint> = WithParameters<Endpoint, PaginatedParameters>;
+type BulkExpandedManyEndpointUrl<Endpoint extends KnownBulkExpandedEndpoint> =
+  | WithParameters<Endpoint, CombineParameters<PaginatedParameters, `ordering=${string}`>>
+  | WithParameters<Endpoint, PaginatedParameters>
+  | WithParameters<Endpoint, `ordering=${string}`>
 type BulkExpandedEndpointUrl<Endpoint extends KnownBulkExpandedEndpoint, Id extends string | number> =
   Endpoint | BulkExpandedSingleEndpointUrl<Endpoint, Id> | BulkExpandedManyEndpointUrl<Endpoint>;
 
