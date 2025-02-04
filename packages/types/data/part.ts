@@ -3,27 +3,18 @@
  *
  * @see https://rebrickable.com/api/v3/docs
  */
-export interface Part {
-  /** The part ID */
-  part_num: string;
 
-  /** The part name */
-  name: string;
+// return result based on inc_part_detail=1
+// if inc_part_detail=0, return result based on inc_part_detail=0
+// if inc_part_detail=1, return result based on inc_part_detail=1
+export type Part<T extends number = 0> = T extends 1 ? DetailedPart : BasePart;
 
-  /** The part category ID */
-  part_cat_id: number;
-
+export interface DetailedPart extends BasePart {
   /** Year from */
   year_from?: number;
 
   /** Year to */
   year_to?: number;
-
-  /** The part URL */
-  part_url: string;
-
-  /** The part image URL */
-  part_img_url: string;
 
   /** Prints */
   prints?: string[];
@@ -33,9 +24,26 @@ export interface Part {
 
   /** Alternates */
   alternates?: string[];
+}
+
+export interface BasePart {
+  /** The part ID */
+  part_num: string;
+
+  /** The part name */
+  name: string;
+
+  /** The part category ID */
+  part_cat_id: number;
+
+  /** The part URL */
+  part_url: string;
+
+  /** The part image URL */
+  part_img_url: string;
 
   /** External IDs */
-  external_ids?: Record<string, string>;
+  external_ids: Record<'BrickLink' | 'BrickOwl' | 'BrickSet' | 'LDRaw' | 'LEGO', string[]>;
 
   /** Print of */
   print_of: string | null;

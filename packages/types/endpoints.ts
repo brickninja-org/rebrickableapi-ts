@@ -52,7 +52,7 @@ type WithParameters<Url extends string, Parameters extends string | undefined = 
 type PaginatedParameters = `page=${number}` | `page_size=${number}` | CombineParameters<`page=${number}`, `page_size=${number}`>;
 type PaginatedEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, PaginatedParameters>;
 
-// herlper for search parameters
+// helper for search parameters
 type SearchParameters = `search=${string}`;
 type SearchEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, SearchParameters>;
 
@@ -65,7 +65,7 @@ type BulkExpandedSingleEndpointUrl<Endpoint extends KnownBulkExpandedEndpoint, I
 type BulkExpandedManyEndpointUrl<Endpoint extends KnownBulkExpandedEndpoint> =
   | WithParameters<Endpoint, CombineParameters<PaginatedParameters, `ordering=${string}`>>
   | WithParameters<Endpoint, PaginatedParameters>
-  | WithParameters<Endpoint, `ordering=${string}`>
+  | WithParameters<Endpoint, `ordering=${string}`>;
 type BulkExpandedEndpointUrl<Endpoint extends KnownBulkExpandedEndpoint, Id extends string | number> =
   Endpoint | BulkExpandedSingleEndpointUrl<Endpoint, Id> | BulkExpandedManyEndpointUrl<Endpoint>;
 
