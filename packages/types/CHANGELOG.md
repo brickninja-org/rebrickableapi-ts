@@ -1,5 +1,11 @@
 # @rebrickableapi/types
 
+## 0.0.10
+
+### Patch Changes
+
+- Update part ext_ids ([`a5affa6`](https://github.com/brickninja-org/rebrickableapi-ts/commit/a5affa6fcec19bf9fb03ecd685cdc9ed02fb74b5) by [@brickninja-pro](https://github.com/brickninja-pro))
+
 ## 0.0.9
 
 ### Patch Changes
