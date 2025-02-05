@@ -1,6 +1,6 @@
 {
   "name": "@rebrickableapi/types",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "TypeScript types for all datastructures used by the Rebrickable API",
   "license": "MIT",
   "repository": {
