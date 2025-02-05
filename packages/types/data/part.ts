@@ -3,10 +3,6 @@
  *
  * @see https://rebrickable.com/api/v3/docs
  */
-
-// return result based on inc_part_detail=1
-// if inc_part_detail=0, return result based on inc_part_detail=0
-// if inc_part_detail=1, return result based on inc_part_detail=1
 export type Part<T extends number = 0> = T extends 1 ? DetailedPart : BasePart;
 
 export interface DetailedPart extends BasePart {
