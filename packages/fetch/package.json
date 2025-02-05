@@ -24,7 +24,7 @@
     "typescript": "5.7.3"
   },
   "peerDependencies": {
-    "@rebrickableapi/types": "~0.0.10"
+    "@rebrickableapi/types": "~0.0.11"
   },
   "publishConfig": {
     "access": "public"
