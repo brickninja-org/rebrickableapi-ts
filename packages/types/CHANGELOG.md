@@ -1,5 +1,11 @@
 # @rebrickableapi/types
 
+## 0.0.11
+
+### Patch Changes
+
+- Add set inventory part endpoint ([`d5fb4eb`](https://github.com/brickninja-org/rebrickableapi-ts/commit/d5fb4eb1192a168ef23b2a343d959274ca40c5d4) by [@brickninja-pro](https://github.com/brickninja-pro))
+
 ## 0.0.10
 
 ### Patch Changes
