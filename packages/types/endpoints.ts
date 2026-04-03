@@ -6,6 +6,7 @@ import type { Part } from './data/part';
 import type { PartCategory } from './data/part-categories';
 import type { Set } from './data/set';
 import type { Theme } from './data/theme';
+import type { PartColor } from './data/part-color';
 
 type BasePath = '/api/v3';
 
@@ -54,10 +55,6 @@ type WithParameters<Url extends string, Parameters extends string | undefined = 
 type PaginatedParameters = `page=${number}` | `page_size=${number}` | CombineParameters<`page=${number}`, `page_size=${number}`>;
 type PaginatedEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, PaginatedParameters>;
 
-// helper for search parameters
-type SearchParameters = `search=${string}`;
-type SearchEndpointUrl<Endpoint extends KnownEndpoint> = Endpoint | WithParameters<Endpoint, SearchParameters>;
-
 type PaginatedResponseType<Endpoint extends KnownEndpoint, T> =
   Endpoint extends PaginatedEndpointUrl<KnownEndpoint> ? { count: number, next: string | null, previous: string | null, results: T[] } :
   unknown;
@@ -103,7 +100,7 @@ export type EndpointType<Url extends KnownEndpoint | (string & {})> =
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/part_categories/', number> ? BulkExpandedResponseType<'/api/v3/lego/part_categories/', Url, number, PartCategory> :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/sets/', string> ? BulkExpandedResponseType<'/api/v3/lego/sets/', Url, string, Set> :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/themes/', number> ? BulkExpandedResponseType<'/api/v3/lego/themes/', Url, number, Theme> :
-  Url extends `/api/v3/lego/parts/${string}/colors/` ? PaginatedResponseType<Url, Color> :
+  Url extends `/api/v3/lego/parts/${string}/colors/` ? PaginatedResponseType<Url, PartColor> :
   Url extends PaginatedEndpointUrl<`/api/v3/lego/sets/${string}/parts/`> ? PaginatedResponseType<`/api/v3/lego/sets/${string}/parts/`, InventoryPart> :
   Url extends BulkExpandedEndpointUrl<'/api/v3/lego/parts/', string> ? BulkExpandedResponseType<'/api/v3/lego/parts/', Url, string, Part> :
   // fallback for all bulk expanded URLs
